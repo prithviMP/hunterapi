@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "apps",
+  "info": {
+    "singularName": "app",
+    "pluralName": "apps",
+    "displayName": "Application",
+    "description": "Application access control"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["core", "integration", "tool", "report", "other"],
+      "default": "other"
+    },
+    "permissions": {
+      "type": "json",
+      "description": "Permission configuration for the app"
+    },
+    "requiredRoles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::role.role",
+      "inversedBy": "apps"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "version": {
+      "type": "string"
+    },
+    "settings": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+} 

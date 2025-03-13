@@ -1,0 +1,5 @@
+/**
+ * AuditLog service
+ */
+
+export default () => ({});

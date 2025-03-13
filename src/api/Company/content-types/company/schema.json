@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "companies",
+  "info": {
+    "singularName": "company",
+    "pluralName": "companies",
+    "displayName": "Company",
+    "description": "Company information"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 2
+    },
+    "industry": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "pincode": {
+      "type": "string",
+      "required": true,
+      "regex": "^[0-9]{6}$"
+    },
+    "gst_number": {
+      "type": "string",
+      "unique": true,
+      "regex": "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$"
+    },
+    "pan_number": {
+      "type": "string",
+      "unique": true,
+      "regex": "^[A-Z]{5}[0-9]{4}[A-Z]{1}$"
+    },
+    "annual_revenue": {
+      "type": "decimal",
+      "min": 0
+    },
+    "employee_count": {
+      "type": "integer",
+      "min": 0
+    },
+    "website": {
+      "type": "string",
+      "regex": "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["active", "inactive"],
+      "default": "active",
+      "required": true
+    },
+    "is_deleted": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "contacts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::contact.contact",
+      "mappedBy": "company"
+    }
+  }
+} 

@@ -1,0 +1,5 @@
+/**
+ * ScheduledCall service
+ */
+
+export default () => ({});

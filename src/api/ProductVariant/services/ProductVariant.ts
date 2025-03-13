@@ -1,0 +1,5 @@
+/**
+ * ProductVariant service
+ */
+
+export default () => ({});

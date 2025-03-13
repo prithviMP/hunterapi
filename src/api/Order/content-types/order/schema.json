@@ -1,0 +1,144 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": "Customer orders"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "order_number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company"
+    },
+    "contact": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contact.contact"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "subtotal": {
+      "type": "decimal",
+      "required": true
+    },
+    "tax_amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "discount_amount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "total_amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "draft",
+        "confirmed",
+        "processing",
+        "shipped",
+        "delivered",
+        "cancelled",
+        "returned"
+      ],
+      "default": "draft"
+    },
+    "payment_status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "paid",
+        "partially_paid",
+        "refunded",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "items": {
+      "type": "json",
+      "description": "Line items in the order"
+    },
+    "shipping_address": {
+      "type": "json"
+    },
+    "billing_address": {
+      "type": "json"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "pdfs"
+      ]
+    },
+    "invoice": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::invoice.invoice",
+      "mappedBy": "order"
+    },
+    "currency": {
+      "type": "string",
+      "default": "INR"
+    },
+    "tax_details": {
+      "type": "json",
+      "description": "Breakdown of taxes applied"
+    },
+    "discount_details": {
+      "type": "json",
+      "description": "Breakdown of discounts applied"
+    },
+    "shipping_method": {
+      "type": "string"
+    },
+    "shipping_cost": {
+      "type": "decimal",
+      "default": 0
+    },
+    "tracking_number": {
+      "type": "string"
+    },
+    "expected_delivery_date": {
+      "type": "date"
+    },
+    "confirmed_date": {
+      "type": "datetime"
+    },
+    "shipped_date": {
+      "type": "datetime"
+    },
+    "delivered_date": {
+      "type": "datetime"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

@@ -1,0 +1,165 @@
+{
+  "kind": "collectionType",
+  "collectionName": "visits",
+  "info": {
+    "singularName": "visit",
+    "pluralName": "visits",
+    "displayName": "Visit",
+    "description": "Records of visits to companies"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company"
+    },
+    "contact": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contact.contact",
+      "inversedBy": "visits"
+    },
+    "visit_time": {
+      "type": "datetime",
+      "required": true
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Duration of visit in minutes"
+    },
+    "purpose": {
+      "type": "enumeration",
+      "enum": [
+        "sales",
+        "collection",
+        "support",
+        "introduction",
+        "other"
+      ],
+      "required": true
+    },
+    "outcome": {
+      "type": "enumeration",
+      "enum": [
+        "successful",
+        "follow_up_needed",
+        "not_available",
+        "not_interested"
+      ]
+    },
+    "notes": {
+      "type": "text"
+    },
+    "location": {
+      "type": "json",
+      "description": "Visit location coordinates and address"
+    },
+    "photos": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "next_follow_up": {
+      "type": "datetime"
+    },
+    "check_in_time": {
+      "type": "datetime"
+    },
+    "check_out_time": {
+      "type": "datetime"
+    },
+    "check_in_location": {
+      "type": "json",
+      "description": "Check-in location coordinates and address"
+    },
+    "check_out_location": {
+      "type": "json",
+      "description": "Check-out location coordinates and address"
+    },
+    "check_in_photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "check_out_photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "distance_from_company": {
+      "type": "decimal",
+      "description": "Distance in meters from the registered company location"
+    },
+    "is_valid_location": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the visit was made within acceptable distance from company"
+    },
+    "feedback": {
+      "type": "text",
+      "description": "Customer feedback during visit"
+    },
+    "products_discussed": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "visit_status": {
+      "type": "enumeration",
+      "enum": [
+        "planned",
+        "checked_in",
+        "checked_out",
+        "cancelled"
+      ],
+      "default": "planned"
+    },
+    "cancellation_reason": {
+      "type": "text"
+    },
+    "meeting_person": {
+      "type": "string",
+      "description": "Name of the person met during visit if different from contact"
+    },
+    "meeting_person_designation": {
+      "type": "string"
+    },
+    "is_productive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the visit was productive"
+    },
+    "next_steps": {
+      "type": "text",
+      "description": "Action items or next steps from the visit"
+    },
+    "payments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment.payment",
+      "mappedBy": "visit"
+    }
+  }
+} 

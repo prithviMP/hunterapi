@@ -1,0 +1,115 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_settings_collection",
+  "info": {
+    "singularName": "user-settings",
+    "pluralName": "user-settings-collection",
+    "displayName": "UserSettings",
+    "description": "User preferences and settings"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "language": {
+      "type": "string",
+      "default": "en"
+    },
+    "timezone": {
+      "type": "string",
+      "default": "UTC"
+    },
+    "date_format": {
+      "type": "string",
+      "default": "YYYY-MM-DD"
+    },
+    "time_format": {
+      "type": "string",
+      "default": "HH:mm:ss"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "number_format": {
+      "type": "string",
+      "default": "#,##0.00"
+    },
+    "theme": {
+      "type": "string",
+      "default": "light"
+    },
+    "color_scheme": {
+      "type": "string",
+      "default": "default"
+    },
+    "sidebar_collapsed": {
+      "type": "boolean",
+      "default": false
+    },
+    "notification_settings": {
+      "type": "json",
+      "description": "Settings for different types of notifications"
+    },
+    "email_notification": {
+      "type": "boolean",
+      "default": true
+    },
+    "sms_notification": {
+      "type": "boolean",
+      "default": false
+    },
+    "push_notification": {
+      "type": "boolean",
+      "default": true
+    },
+    "dashboard_widgets": {
+      "type": "json",
+      "description": "Configuration of user's dashboard widgets"
+    },
+    "table_preferences": {
+      "type": "json",
+      "description": "Column visibility and sorting preferences for tables"
+    },
+    "calendar_settings": {
+      "type": "json",
+      "description": "Calendar view settings"
+    },
+    "filter_presets": {
+      "type": "json",
+      "description": "Saved filter presets for different views"
+    },
+    "recent_items": {
+      "type": "json",
+      "description": "Recently accessed items"
+    },
+    "favorite_items": {
+      "type": "json",
+      "description": "User's favorite or pinned items"
+    },
+    "shortcut_keys": {
+      "type": "json",
+      "description": "Custom keyboard shortcut mappings"
+    },
+    "marketing_preferences": {
+      "type": "json",
+      "description": "Marketing email and communication preferences"
+    },
+    "accessibility_settings": {
+      "type": "json",
+      "description": "Accessibility preferences"
+    },
+    "custom_settings": {
+      "type": "json",
+      "description": "Any additional user-specific settings"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

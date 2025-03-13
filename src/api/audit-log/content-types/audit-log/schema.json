@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "audit_logs",
+  "info": {
+    "singularName": "audit-log",
+    "pluralName": "audit-logs",
+    "displayName": "Audit Log",
+    "description": "System audit logs for tracking user actions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "action": {
+      "type": "string",
+      "required": true
+    },
+    "timestamp": {
+      "type": "datetime",
+      "required": true
+    },
+    "entity": {
+      "type": "string",
+      "description": "The entity type that was affected"
+    },
+    "entityId": {
+      "type": "string",
+      "description": "The ID of the entity that was affected"
+    },
+    "details": {
+      "type": "json",
+      "description": "Detailed information about the action"
+    },
+    "ipAddress": {
+      "type": "string"
+    },
+    "userAgent": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "success",
+        "failure",
+        "warning"
+      ],
+      "default": "success"
+    },
+    "module": {
+      "type": "string",
+      "description": "The module or section where the action occurred"
+    },
+    "severity": {
+      "type": "enumeration",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "default": "low"
+    },
+    "changes": {
+      "type": "json",
+      "description": "Before and after values for changes"
+    }
+  }
+} 

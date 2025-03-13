@@ -1,0 +1,5 @@
+/**
+ * EmailTemplate service
+ */
+
+export default () => ({});

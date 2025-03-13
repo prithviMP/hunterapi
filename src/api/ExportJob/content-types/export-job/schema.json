@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "export_jobs",
+  "info": {
+    "singularName": "export-job",
+    "pluralName": "export-jobs",
+    "displayName": "ExportJob",
+    "description": "Tracks data export operations"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "entity_type": {
+      "type": "string",
+      "required": true,
+      "description": "Type of data being exported (e.g., contacts, companies)"
+    },
+    "filters": {
+      "type": "json",
+      "description": "Search filters applied to the export"
+    },
+    "file_format": {
+      "type": "enumeration",
+      "enum": [
+        "csv",
+        "xlsx",
+        "json",
+        "pdf"
+      ],
+      "default": "csv"
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "total_records": {
+      "type": "integer",
+      "default": 0
+    },
+    "start_date": {
+      "type": "datetime"
+    },
+    "end_date": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "error_message": {
+      "type": "text"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

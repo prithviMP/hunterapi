@@ -1,0 +1,123 @@
+{
+  "kind": "collectionType",
+  "collectionName": "payments",
+  "info": {
+    "singularName": "payment",
+    "pluralName": "payments",
+    "displayName": "Payment",
+    "description": "Payment records for invoices"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "payment_number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "date": {
+      "type": "datetime",
+      "required": true
+    },
+    "amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "invoice": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::invoice.invoice",
+      "inversedBy": "payments"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company"
+    },
+    "contact": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contact.contact"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": [
+        "cash",
+        "check",
+        "bank_transfer",
+        "credit_card",
+        "debit_card",
+        "upi",
+        "wallet",
+        "other"
+      ],
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "completed",
+        "failed",
+        "refunded"
+      ],
+      "default": "completed"
+    },
+    "reference_number": {
+      "type": "string",
+      "description": "Reference number for the payment (check number, transaction ID, etc.)"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "pdfs"
+      ]
+    },
+    "currency": {
+      "type": "string",
+      "default": "INR"
+    },
+    "bank_name": {
+      "type": "string"
+    },
+    "account_number": {
+      "type": "string"
+    },
+    "cheque_number": {
+      "type": "string"
+    },
+    "cheque_date": {
+      "type": "date"
+    },
+    "transaction_id": {
+      "type": "string"
+    },
+    "payment_gateway": {
+      "type": "string"
+    },
+    "gateway_response": {
+      "type": "json"
+    },
+    "visit": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::visit.visit",
+      "inversedBy": "payments"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

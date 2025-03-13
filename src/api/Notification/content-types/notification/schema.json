@@ -1,0 +1,93 @@
+{
+  "kind": "collectionType",
+  "collectionName": "notifications",
+  "info": {
+    "singularName": "notification",
+    "pluralName": "notifications",
+    "displayName": "Notification",
+    "description": "User notifications and alerts"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "info",
+        "warning",
+        "success",
+        "error",
+        "task",
+        "reminder",
+        "system"
+      ],
+      "default": "info"
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium"
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false
+    },
+    "read_at": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "sender": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "action_url": {
+      "type": "string",
+      "description": "URL to navigate to when clicking the notification"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Type of related entity (e.g., contact, company, task)"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of the related entity"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon name to display with the notification"
+    },
+    "expires_at": {
+      "type": "datetime",
+      "description": "When the notification should expire/be automatically removed"
+    },
+    "is_dismissed": {
+      "type": "boolean",
+      "default": false
+    },
+    "dismissed_at": {
+      "type": "datetime"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

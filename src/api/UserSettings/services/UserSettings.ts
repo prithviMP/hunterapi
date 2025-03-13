@@ -1,0 +1,5 @@
+/**
+ * UserSettings service
+ */
+
+export default () => ({});

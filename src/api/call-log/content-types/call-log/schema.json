@@ -1,0 +1,150 @@
+{
+  "kind": "collectionType",
+  "collectionName": "call_logs",
+  "info": {
+    "singularName": "call-log",
+    "pluralName": "call-logs",
+    "displayName": "Call Log",
+    "description": "Records of calls made to contacts"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "contact": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contact.contact",
+      "inversedBy": "call_logs"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company"
+    },
+    "call_time": {
+      "type": "datetime",
+      "required": true
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Duration of the call in seconds"
+    },
+    "call_type": {
+      "type": "enumeration",
+      "enum": [
+        "incoming",
+        "outgoing",
+        "missed",
+        "scheduled"
+      ],
+      "required": true
+    },
+    "call_status": {
+      "type": "enumeration",
+      "enum": [
+        "completed",
+        "missed",
+        "rejected",
+        "busy",
+        "no_answer",
+        "failed"
+      ],
+      "required": true
+    },
+    "outcome": {
+      "type": "enumeration",
+      "enum": [
+        "interested",
+        "not_interested",
+        "follow_up_needed",
+        "wrong_number",
+        "call_back_later",
+        "do_not_call"
+      ]
+    },
+    "notes": {
+      "type": "richtext",
+      "description": "Detailed notes about the call"
+    },
+    "recording_url": {
+      "type": "string",
+      "description": "URL to the call recording if available"
+    },
+    "is_favorite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Mark important calls for quick access"
+    },
+    "next_follow_up": {
+      "type": "datetime",
+      "description": "When to follow up next"
+    },
+    "follow_up_notes": {
+      "type": "text",
+      "description": "Notes for the next follow-up"
+    },
+    "products_discussed": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "scheduled_call": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::scheduled-call.scheduled-call"
+    },
+    "call_purpose": {
+      "type": "enumeration",
+      "enum": [
+        "sales",
+        "support",
+        "follow_up",
+        "collection",
+        "complaint",
+        "other"
+      ]
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "default": "medium"
+    },
+    "is_productive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the call was productive"
+    },
+    "feedback_rating": {
+      "type": "integer",
+      "min": 1,
+      "max": 5,
+      "description": "Customer satisfaction rating"
+    },
+    "feedback_comments": {
+      "type": "text",
+      "description": "Customer feedback comments"
+    },
+    "call_tags": {
+      "type": "json",
+      "description": "Custom tags for categorizing calls"
+    }
+  }
+} 

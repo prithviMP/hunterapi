@@ -1,0 +1,137 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "Invoice",
+    "description": "Customer invoices"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "invoice_number": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "due_date": {
+      "type": "date",
+      "required": true
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company"
+    },
+    "contact": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contact.contact"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order.order",
+      "inversedBy": "invoice"
+    },
+    "subtotal": {
+      "type": "decimal",
+      "required": true
+    },
+    "tax_amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "discount_amount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "total_amount": {
+      "type": "decimal",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "draft",
+        "sent",
+        "paid",
+        "partially_paid",
+        "overdue",
+        "cancelled",
+        "refunded"
+      ],
+      "default": "draft"
+    },
+    "payment_terms": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "items": {
+      "type": "json",
+      "description": "Line items in the invoice"
+    },
+    "shipping_address": {
+      "type": "json"
+    },
+    "billing_address": {
+      "type": "json"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "pdfs"
+      ]
+    },
+    "payments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment.payment",
+      "mappedBy": "invoice"
+    },
+    "currency": {
+      "type": "string",
+      "default": "INR"
+    },
+    "tax_details": {
+      "type": "json",
+      "description": "Breakdown of taxes applied"
+    },
+    "discount_details": {
+      "type": "json",
+      "description": "Breakdown of discounts applied"
+    },
+    "pdf_generated": {
+      "type": "boolean",
+      "default": false
+    },
+    "pdf_url": {
+      "type": "string"
+    },
+    "sent_date": {
+      "type": "datetime"
+    },
+    "paid_date": {
+      "type": "datetime"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

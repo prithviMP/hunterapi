@@ -1,0 +1,5 @@
+/**
+ * DailySalesReport service
+ */
+
+export default () => ({});

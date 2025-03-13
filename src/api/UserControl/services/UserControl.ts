@@ -1,0 +1,5 @@
+/**
+ * UserControl service
+ */
+
+export default () => ({});

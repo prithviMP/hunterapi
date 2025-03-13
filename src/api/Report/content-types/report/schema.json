@@ -1,0 +1,110 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reports",
+  "info": {
+    "singularName": "report",
+    "pluralName": "reports",
+    "displayName": "Report",
+    "description": "Custom reports and analytics"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "sales",
+        "inventory",
+        "customer",
+        "performance",
+        "financial",
+        "marketing",
+        "custom"
+      ],
+      "default": "sales"
+    },
+    "query": {
+      "type": "json",
+      "description": "Query configuration for the report"
+    },
+    "filters": {
+      "type": "json",
+      "description": "Available filters for the report"
+    },
+    "columns": {
+      "type": "json",
+      "description": "Column configuration for the report"
+    },
+    "visualization_type": {
+      "type": "enumeration",
+      "enum": [
+        "table",
+        "bar_chart",
+        "line_chart",
+        "pie_chart",
+        "area_chart",
+        "scatter_plot",
+        "card",
+        "kpi",
+        "map",
+        "custom"
+      ],
+      "default": "table"
+    },
+    "visualization_config": {
+      "type": "json",
+      "description": "Configuration for the visualization"
+    },
+    "is_scheduled": {
+      "type": "boolean",
+      "default": false
+    },
+    "schedule_config": {
+      "type": "json",
+      "description": "Configuration for scheduled report generation"
+    },
+    "last_run": {
+      "type": "datetime"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "shared_with": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "is_public": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_template": {
+      "type": "boolean",
+      "default": false
+    },
+    "data_source": {
+      "type": "string",
+      "default": "default"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

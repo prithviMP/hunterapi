@@ -1,0 +1,128 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact",
+    "description": "Contact information for companies"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "last_name": {
+      "type": "string",
+      "required": true,
+      "minLength": 2
+    },
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "regex": "^\\+?[1-9]\\d{9,14}$"
+    },
+    "alternate_phone": {
+      "type": "string",
+      "regex": "^\\+?[1-9]\\d{9,14}$"
+    },
+    "designation": {
+      "type": "string",
+      "required": true
+    },
+    "department": {
+      "type": "string"
+    },
+    "is_decision_maker": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_temporary": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_deleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "notes": {
+      "type": "text"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company",
+      "inversedBy": "contacts"
+    },
+    "owner": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "last_contacted": {
+      "type": "datetime"
+    },
+    "contact_status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "inactive",
+        "do_not_contact"
+      ],
+      "default": "active"
+    },
+    "preferred_contact_method": {
+      "type": "enumeration",
+      "enum": [
+        "email",
+        "phone",
+        "whatsapp"
+      ],
+      "default": "email"
+    },
+    "social_links": {
+      "type": "json"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "profile_picture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "preferred_contact_time": {
+      "type": "json",
+      "description": "Preferred time slots for contact"
+    },
+    "call_logs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::call-log.call-log",
+      "mappedBy": "contact"
+    },
+    "scheduled_calls": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::scheduled-call.scheduled-call",
+      "mappedBy": "contact"
+    },
+    "visits": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::visit.visit",
+      "mappedBy": "contact"
+    }
+  }
+} 

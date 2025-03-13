@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "applications",
+  "info": {
+    "singularName": "application",
+    "pluralName": "applications",
+    "displayName": "Application",
+    "description": "Application management for the system"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "version": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "inactive",
+        "deprecated",
+        "development"
+      ],
+      "default": "active"
+    },
+    "releaseDate": {
+      "type": "datetime"
+    },
+    "lastUpdated": {
+      "type": "datetime"
+    },
+    "configuration": {
+      "type": "json",
+      "description": "Application configuration settings"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "roles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::role.role"
+    },
+    "isSystem": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is a system application"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

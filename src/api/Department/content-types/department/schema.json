@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "departments",
+  "info": {
+    "singularName": "department",
+    "pluralName": "departments",
+    "displayName": "Department",
+    "description": "Organizational departments"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "manager": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::department.department",
+      "inversedBy": "children"
+    },
+    "children": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::department.department",
+      "mappedBy": "parent"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "level": {
+      "type": "integer",
+      "min": 0,
+      "default": 0,
+      "description": "Hierarchy level of the department"
+    },
+    "budget": {
+      "type": "decimal",
+      "description": "Department budget"
+    },
+    "costCenter": {
+      "type": "string",
+      "description": "Cost center code"
+    },
+    "location": {
+      "type": "string",
+      "description": "Physical location of the department"
+    },
+    "email": {
+      "type": "email",
+      "description": "Department email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Department phone number"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

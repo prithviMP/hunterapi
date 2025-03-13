@@ -1,0 +1,5 @@
+/**
+ * PdfTemplate service
+ */
+
+export default () => ({});

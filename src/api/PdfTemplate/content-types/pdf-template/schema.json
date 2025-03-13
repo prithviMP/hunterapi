@@ -1,0 +1,115 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pdf_templates",
+  "info": {
+    "singularName": "pdf-template",
+    "pluralName": "pdf-templates",
+    "displayName": "PdfTemplate",
+    "description": "Templates for generating PDF documents"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "invoice",
+        "quote",
+        "receipt",
+        "report",
+        "letter",
+        "certificate",
+        "other"
+      ],
+      "default": "invoice"
+    },
+    "html_content": {
+      "type": "richtext",
+      "required": true,
+      "description": "HTML template content with placeholders"
+    },
+    "css_styles": {
+      "type": "text",
+      "description": "CSS styles for the template"
+    },
+    "header_html": {
+      "type": "richtext",
+      "description": "HTML content for the document header"
+    },
+    "footer_html": {
+      "type": "richtext",
+      "description": "HTML content for the document footer"
+    },
+    "page_size": {
+      "type": "enumeration",
+      "enum": [
+        "A4",
+        "A5",
+        "Letter",
+        "Legal"
+      ],
+      "default": "A4"
+    },
+    "orientation": {
+      "type": "enumeration",
+      "enum": [
+        "portrait",
+        "landscape"
+      ],
+      "default": "portrait"
+    },
+    "margin_top": {
+      "type": "decimal",
+      "default": 10
+    },
+    "margin_right": {
+      "type": "decimal",
+      "default": 10
+    },
+    "margin_bottom": {
+      "type": "decimal",
+      "default": 10
+    },
+    "margin_left": {
+      "type": "decimal",
+      "default": 10
+    },
+    "preview_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "is_default": {
+      "type": "boolean",
+      "default": false
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "version": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    }
+  }
+} 

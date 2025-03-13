@@ -1,0 +1,5 @@
+/**
+ * UserActivity service
+ */
+
+export default () => ({});

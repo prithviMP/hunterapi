@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brands",
+  "info": {
+    "singularName": "brand",
+    "pluralName": "brands",
+    "displayName": "Brand",
+    "description": "Product brands and their details"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 2
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 2,
+      "maxLength": 10
+    },
+    "description": {
+      "type": "text"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "website": {
+      "type": "string",
+      "regex": "^https?:\\/\\/.*"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "manufacturer": {
+      "type": "string",
+      "required": true
+    },
+    "country_of_origin": {
+      "type": "string",
+      "required": true
+    },
+    "year_established": {
+      "type": "integer",
+      "min": 1800,
+      "max": 2100
+    },
+    "brand_category": {
+      "type": "enumeration",
+      "enum": [
+        "premium",
+        "mid_range",
+        "economy"
+      ],
+      "default": "mid_range",
+      "required": true
+    },
+    "target_market": {
+      "type": "json"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "brand"
+    },
+    "marketing_materials": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    }
+  }
+} 

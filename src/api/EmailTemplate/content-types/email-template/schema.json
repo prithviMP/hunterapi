@@ -1,0 +1,101 @@
+{
+  "kind": "collectionType",
+  "collectionName": "email_templates",
+  "info": {
+    "singularName": "email-template",
+    "pluralName": "email-templates",
+    "displayName": "Email Template",
+    "description": "Templates for sending emails"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "subject": {
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "type": "richtext",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "notification",
+        "marketing",
+        "transactional",
+        "reminder",
+        "welcome",
+        "password_reset",
+        "other"
+      ],
+      "default": "other"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "variables": {
+      "type": "json",
+      "description": "Variables that can be used in the template"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "sender_name": {
+      "type": "string"
+    },
+    "sender_email": {
+      "type": "email"
+    },
+    "reply_to": {
+      "type": "email"
+    },
+    "cc": {
+      "type": "text",
+      "description": "Comma-separated list of CC email addresses"
+    },
+    "bcc": {
+      "type": "text",
+      "description": "Comma-separated list of BCC email addresses"
+    },
+    "roles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::role.role",
+      "inversedBy": "emailTemplates"
+    },
+    "html_version": {
+      "type": "richtext",
+      "description": "HTML version of the email"
+    },
+    "text_version": {
+      "type": "text",
+      "description": "Plain text version of the email"
+    },
+    "last_sent": {
+      "type": "datetime"
+    },
+    "send_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

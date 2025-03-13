@@ -1,0 +1,86 @@
+{
+  "kind": "collectionType",
+  "collectionName": "product_variants",
+  "info": {
+    "singularName": "product-variant",
+    "pluralName": "product-variants",
+    "displayName": "ProductVariant",
+    "description": "Variants of products with different attributes"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "sku": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "sale_price": {
+      "type": "decimal"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product.product",
+      "inversedBy": "variants"
+    },
+    "attributes": {
+      "type": "json",
+      "description": "Variant attributes like color, size, etc."
+    },
+    "weight": {
+      "type": "decimal",
+      "description": "Weight in grams"
+    },
+    "dimensions": {
+      "type": "json",
+      "description": "Dimensions (length, width, height)"
+    },
+    "stock_quantity": {
+      "type": "integer",
+      "default": 0
+    },
+    "is_in_stock": {
+      "type": "boolean",
+      "default": true
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "barcode": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "is_default": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is the default variant"
+    },
+    "cost_price": {
+      "type": "decimal",
+      "description": "Cost price for inventory valuation"
+    },
+    "tax_class": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

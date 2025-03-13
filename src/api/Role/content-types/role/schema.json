@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "roles",
+  "info": {
+    "singularName": "role",
+    "pluralName": "roles",
+    "displayName": "Role",
+    "description": "User roles and permissions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "permissions": {
+      "type": "json",
+      "description": "Detailed permission configuration"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user"
+    },
+    "apps": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::app.app",
+      "mappedBy": "requiredRoles"
+    },
+    "level": {
+      "type": "integer",
+      "min": 0,
+      "default": 0,
+      "description": "Role hierarchy level"
+    },
+    "isSystem": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is a system-defined role"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "allowedRegions": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::region.region"
+    },
+    "emailTemplates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::email-template.email-template"
+    }
+  }
+} 

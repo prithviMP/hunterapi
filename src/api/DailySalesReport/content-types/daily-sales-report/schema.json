@@ -1,0 +1,128 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_sales_reports",
+  "info": {
+    "singularName": "daily-sales-report",
+    "pluralName": "daily-sales-reports",
+    "displayName": "Daily Sales Report",
+    "description": "Daily sales reports submitted by sales representatives"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "region": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::region.region"
+    },
+    "total_sales": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
+    },
+    "total_orders": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "total_visits": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "total_calls": {
+      "type": "integer",
+      "required": true,
+      "default": 0
+    },
+    "productive_calls": {
+      "type": "integer",
+      "default": 0
+    },
+    "productive_visits": {
+      "type": "integer",
+      "default": 0
+    },
+    "summary": {
+      "type": "text",
+      "description": "Summary of the day's activities"
+    },
+    "challenges": {
+      "type": "text",
+      "description": "Challenges faced during the day"
+    },
+    "opportunities": {
+      "type": "text",
+      "description": "New opportunities identified"
+    },
+    "product_performance": {
+      "type": "json",
+      "description": "Performance data for products sold"
+    },
+    "expenses": {
+      "type": "decimal",
+      "default": 0,
+      "description": "Total expenses for the day"
+    },
+    "expense_details": {
+      "type": "json",
+      "description": "Breakdown of expenses"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "draft",
+        "submitted",
+        "approved",
+        "rejected"
+      ],
+      "default": "draft"
+    },
+    "approved_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "approval_date": {
+      "type": "datetime"
+    },
+    "rejection_reason": {
+      "type": "text"
+    },
+    "start_time": {
+      "type": "time"
+    },
+    "end_time": {
+      "type": "time"
+    },
+    "total_working_hours": {
+      "type": "decimal"
+    },
+    "location_start": {
+      "type": "json",
+      "description": "Starting location coordinates"
+    },
+    "location_end": {
+      "type": "json",
+      "description": "Ending location coordinates"
+    }
+  }
+} 

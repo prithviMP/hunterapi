@@ -1,0 +1,94 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shortcodes",
+  "info": {
+    "singularName": "shortcode",
+    "pluralName": "shortcodes",
+    "displayName": "Shortcode",
+    "description": "URL shortening and tracking"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 3
+    },
+    "original_url": {
+      "type": "text",
+      "required": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "expires_at": {
+      "type": "datetime"
+    },
+    "created_by_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "click_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "last_clicked_at": {
+      "type": "datetime"
+    },
+    "utm_source": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_term": {
+      "type": "string"
+    },
+    "utm_content": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "click_data": {
+      "type": "json",
+      "description": "Detailed analytics of clicks"
+    },
+    "password": {
+      "type": "string",
+      "description": "Optional password protection"
+    },
+    "is_password_protected": {
+      "type": "boolean",
+      "default": false
+    },
+    "custom_domain": {
+      "type": "string",
+      "description": "Optional custom domain for the short URL"
+    },
+    "qr_code": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

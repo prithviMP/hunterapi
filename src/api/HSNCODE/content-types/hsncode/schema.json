@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hsncodes",
+  "info": {
+    "singularName": "hsncode",
+    "pluralName": "hsncodes",
+    "displayName": "HSNCODE",
+    "description": "Harmonized System of Nomenclature Codes for products"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "gst_percentage": {
+      "type": "decimal",
+      "required": true,
+      "description": "GST percentage applicable for this HSN code"
+    },
+    "cgst_percentage": {
+      "type": "decimal",
+      "description": "CGST percentage"
+    },
+    "sgst_percentage": {
+      "type": "decimal",
+      "description": "SGST percentage"
+    },
+    "igst_percentage": {
+      "type": "decimal",
+      "description": "IGST percentage"
+    },
+    "cess_percentage": {
+      "type": "decimal",
+      "default": 0,
+      "description": "Cess percentage if applicable"
+    },
+    "section": {
+      "type": "string",
+      "description": "HSN section"
+    },
+    "chapter": {
+      "type": "string",
+      "description": "HSN chapter"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "hsncode"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "notes": {
+      "type": "text"
+    }
+  }
+} 

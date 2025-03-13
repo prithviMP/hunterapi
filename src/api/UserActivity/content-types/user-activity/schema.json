@@ -1,0 +1,92 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_activities",
+  "info": {
+    "singularName": "user-activity",
+    "pluralName": "user-activities",
+    "displayName": "UserActivity",
+    "description": "Tracks user activities and events in the system"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "action": {
+      "type": "string",
+      "required": true,
+      "description": "Action performed by the user"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Type of entity involved (e.g., contact, company)"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of the entity involved"
+    },
+    "entity_name": {
+      "type": "string",
+      "description": "Name of the entity for display purposes"
+    },
+    "description": {
+      "type": "text",
+      "description": "Detailed description of the activity"
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "user_agent": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string",
+      "description": "Geographic location of the user"
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "datetime",
+      "required": true
+    },
+    "details": {
+      "type": "json",
+      "description": "Additional details about the activity"
+    },
+    "changes": {
+      "type": "json",
+      "description": "Record of changes made (old vs new values)"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "success",
+        "failure",
+        "warning",
+        "info"
+      ],
+      "default": "success"
+    },
+    "module": {
+      "type": "string",
+      "description": "System module where the activity occurred"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Duration of the activity in milliseconds"
+    },
+    "related_activities": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::user-activity.user-activity"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

@@ -1,0 +1,167 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scheduled_calls",
+  "info": {
+    "singularName": "scheduled-call",
+    "pluralName": "scheduled-calls",
+    "displayName": "ScheduledCall",
+    "description": "Scheduled calls with contacts"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "start_time": {
+      "type": "datetime",
+      "required": true
+    },
+    "end_time": {
+      "type": "datetime"
+    },
+    "duration": {
+      "type": "integer",
+      "min": 1,
+      "description": "Duration in minutes"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "scheduled",
+        "in_progress",
+        "completed",
+        "cancelled",
+        "missed",
+        "rescheduled"
+      ],
+      "default": "scheduled"
+    },
+    "contact": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::contact.contact"
+    },
+    "company": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::company.company"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "assigned_to": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "call_type": {
+      "type": "enumeration",
+      "enum": [
+        "initial_contact",
+        "follow_up",
+        "product_demo",
+        "negotiation",
+        "support",
+        "other"
+      ],
+      "default": "follow_up"
+    },
+    "call_method": {
+      "type": "enumeration",
+      "enum": [
+        "phone",
+        "video",
+        "in_person",
+        "other"
+      ],
+      "default": "phone"
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "meeting_link": {
+      "type": "string",
+      "description": "Link for video calls"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location for in-person meetings"
+    },
+    "reminder_sent": {
+      "type": "boolean",
+      "default": false
+    },
+    "reminder_time": {
+      "type": "datetime"
+    },
+    "notes": {
+      "type": "richtext"
+    },
+    "attachments": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "completed_at": {
+      "type": "datetime"
+    },
+    "agenda": {
+      "type": "richtext"
+    },
+    "outcome": {
+      "type": "text"
+    },
+    "follow_up_date": {
+      "type": "datetime"
+    },
+    "call_log": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::call-log.call-log"
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "default": false
+    },
+    "recurrence_pattern": {
+      "type": "json",
+      "description": "Pattern for recurring calls"
+    },
+    "parent_call": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::scheduled-call.scheduled-call",
+      "inversedBy": "child_calls"
+    },
+    "child_calls": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::scheduled-call.scheduled-call",
+      "mappedBy": "parent_call"
+    },
+    "external_calendar_id": {
+      "type": "string",
+      "description": "ID in external calendar system"
+    },
+    "is_synced": {
+      "type": "boolean",
+      "default": false
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

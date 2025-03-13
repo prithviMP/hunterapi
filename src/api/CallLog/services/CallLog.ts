@@ -1,0 +1,5 @@
+/**
+ * CallLog service
+ */
+
+export default () => ({});

@@ -1,0 +1,98 @@
+{
+  "kind": "collectionType",
+  "collectionName": "import_jobs",
+  "info": {
+    "singularName": "import-job",
+    "pluralName": "import-jobs",
+    "displayName": "ImportJob",
+    "description": "Tracks data import operations"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "validating",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "entity_type": {
+      "type": "string",
+      "required": true,
+      "description": "Type of data being imported (e.g., contacts, companies)"
+    },
+    "file_format": {
+      "type": "enumeration",
+      "enum": [
+        "csv",
+        "xlsx",
+        "json"
+      ],
+      "default": "csv"
+    },
+    "file": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "mapping": {
+      "type": "json",
+      "description": "Column mapping configuration"
+    },
+    "total_records": {
+      "type": "integer",
+      "default": 0
+    },
+    "processed_records": {
+      "type": "integer",
+      "default": 0
+    },
+    "successful_records": {
+      "type": "integer",
+      "default": 0
+    },
+    "failed_records": {
+      "type": "integer",
+      "default": 0
+    },
+    "start_date": {
+      "type": "datetime"
+    },
+    "end_date": {
+      "type": "datetime"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "error_log": {
+      "type": "json",
+      "description": "Log of errors encountered during import"
+    },
+    "validation_results": {
+      "type": "json",
+      "description": "Results of data validation before import"
+    },
+    "options": {
+      "type": "json",
+      "description": "Import options and settings"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 

@@ -1,0 +1,165 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": "Products catalog with variants and inventory management"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 3
+    },
+    "sku": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "minLength": 3,
+      "maxLength": 20
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "short_description": {
+      "type": "text",
+      "maxLength": 200
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand.brand",
+      "inversedBy": "products"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "products"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "price": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "sale_price": {
+      "type": "decimal",
+      "min": 0
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "tax_rate": {
+      "type": "decimal",
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    "weight": {
+      "type": "decimal",
+      "min": 0
+    },
+    "dimensions": {
+      "type": "json",
+      "description": "Product dimensions (length, width, height)"
+    },
+    "variants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-variant.product-variant",
+      "mappedBy": "product"
+    },
+    "specifications": {
+      "type": "json"
+    },
+    "meta_title": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "meta_description": {
+      "type": "text",
+      "maxLength": 160
+    },
+    "meta_keywords": {
+      "type": "text"
+    },
+    "stock_status": {
+      "type": "enumeration",
+      "enum": [
+        "in_stock",
+        "out_of_stock",
+        "low_stock",
+        "backorder"
+      ],
+      "default": "in_stock"
+    },
+    "total_sales": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 5,
+      "default": 0
+    },
+    "review_count": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "related_products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product"
+    },
+    "tags": {
+      "type": "json"
+    },
+    "warranty_info": {
+      "type": "text"
+    },
+    "min_order_quantity": {
+      "type": "integer",
+      "min": 1,
+      "default": 1
+    },
+    "max_order_quantity": {
+      "type": "integer",
+      "min": 1
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_new": {
+      "type": "boolean",
+      "default": true
+    },
+    "launch_date": {
+      "type": "datetime"
+    }
+  }
+} 

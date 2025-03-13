@@ -1,0 +1,117 @@
+{
+  "kind": "collectionType",
+  "collectionName": "user_controls",
+  "info": {
+    "singularName": "user-control",
+    "pluralName": "user-controls",
+    "displayName": "UserControl",
+    "description": "Controls and permissions for users"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "is_locked": {
+      "type": "boolean",
+      "default": false
+    },
+    "locked_reason": {
+      "type": "string"
+    },
+    "last_login": {
+      "type": "datetime"
+    },
+    "last_active": {
+      "type": "datetime"
+    },
+    "failed_login_attempts": {
+      "type": "integer",
+      "default": 0
+    },
+    "last_failed_login": {
+      "type": "datetime"
+    },
+    "password_changed_at": {
+      "type": "datetime"
+    },
+    "password_expires_at": {
+      "type": "datetime"
+    },
+    "must_change_password": {
+      "type": "boolean",
+      "default": false
+    },
+    "verification_token": {
+      "type": "string"
+    },
+    "verification_token_expires_at": {
+      "type": "datetime"
+    },
+    "verification_completed_at": {
+      "type": "datetime"
+    },
+    "is_verified": {
+      "type": "boolean",
+      "default": false
+    },
+    "has_2fa": {
+      "type": "boolean",
+      "default": false
+    },
+    "2fa_method": {
+      "type": "enumeration",
+      "enum": [
+        "email",
+        "sms",
+        "app",
+        "none"
+      ],
+      "default": "none"
+    },
+    "2fa_phone": {
+      "type": "string"
+    },
+    "2fa_backup_codes": {
+      "type": "json"
+    },
+    "access_token": {
+      "type": "text"
+    },
+    "refresh_token": {
+      "type": "text"
+    },
+    "access_token_expires_at": {
+      "type": "datetime"
+    },
+    "device_tokens": {
+      "type": "json",
+      "description": "Tokens for push notifications to devices"
+    },
+    "user_permissions": {
+      "type": "json",
+      "description": "Custom permissions beyond role-based permissions"
+    },
+    "login_history": {
+      "type": "json",
+      "description": "History of recent logins"
+    },
+    "roles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::role.role",
+      "mappedBy": "users"
+    },
+    "metadata": {
+      "type": "json"
+    }
+  }
+} 
